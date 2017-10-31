@@ -5,7 +5,7 @@ Resources:
   ApiGatewayApi:
     Type: AWS::Serverless::Api
     Properties:
-      StageName: staging
+      DefinitionUri: null
       DefinitionBody:
         swagger: 2.0
         paths:
@@ -17,8 +17,8 @@ Resources:
                 uri:
                   Fn::Sub: arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${TimeFunction.Arn}/invocations
               responses: {}  
+      StageName: staging
 
-                             
   TimeFunction:
     Type: AWS::Serverless::Function
     Properties:
