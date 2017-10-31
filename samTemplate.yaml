@@ -19,7 +19,10 @@ Resources:
                 type: aws_proxy
                 uri:
                   Fn::Sub: arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${TimeFunction.Arn}/invocations
-              responses: {}   
+              responses: {}  
+
+              
+               
   TimeFunction:
     Type: AWS::Serverless::Function
     Properties:
@@ -32,7 +35,6 @@ Resources:
           Properties:
             Path: /TimeResource
             Method: GET   
-            RestApiId: 
-                Ref: ApiGatewayApi
+            RestApiId: !Ref ApiGatewayApi
             
               
