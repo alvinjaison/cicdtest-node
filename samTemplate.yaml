@@ -8,9 +8,6 @@ Resources:
       StageName: staging
       DefinitionBody:
         swagger: 2.0
-        info:
-          title:
-            Ref: AWS::StackName
         paths:
           "/get":
             get:
@@ -21,8 +18,7 @@ Resources:
                   Fn::Sub: arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${TimeFunction.Arn}/invocations
               responses: {}  
 
-              
-               
+                             
   TimeFunction:
     Type: AWS::Serverless::Function
     Properties:
