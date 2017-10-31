@@ -6,8 +6,6 @@ Resources:
     Type: AWS::Serverless::Api
     Properties:
       StageName: staging
-      Path: /TimeResource
-      Method: GET    
   TimeFunction:
     Type: AWS::Serverless::Function
     Properties:
@@ -19,4 +17,6 @@ Resources:
           Type: Api
           Properties:
             RestApiId: !Ref ApiGatewayApi
+            Path: /TimeResource
+            Method: GET   
               
