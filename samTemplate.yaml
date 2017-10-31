@@ -5,9 +5,7 @@ Resources:
   ApiGatewayApi:
     Type: AWS::Serverless::Api
     Properties:
-      DefinitionUri: null
       DefinitionBody:
-        swagger: 2.0
         paths:
           "/get":
             get:
@@ -15,7 +13,7 @@ Resources:
                 httpMethod: POST
                 type: aws_proxy
                 uri:
-                  Fn::Sub: arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${TimeFunction.Arn}/invocations
+                  Fn::Sub: arn:aws:apigateway:us-east-2:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-2:902849442700:function:${TimeFunction}/invocations
               responses: {}  
       StageName: staging
 
