@@ -20,6 +20,7 @@ Resources:
                     uri:
                       Fn::Sub: arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${TimeFunction.Arn}/invocations
                   responses: {}   
+                  
   TimeFunction:
     Type: AWS::Serverless::Function
     Properties:
@@ -30,7 +31,9 @@ Resources:
         MyTimeApi:
           Type: Api
           Properties:
-            RestApiId: !Ref ApiGatewayApi
             Path: /TimeResource
             Method: GET   
+            RestApiId: 
+                Ref: ApiGatewayApi
+            
               
