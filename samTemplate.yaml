@@ -6,6 +6,8 @@ Resources:
     Type: AWS::Serverless::Api
     Properties:
       StageName: staging
+      Variables:  
+        LambdaFunctionName: !Ref LambdaFunction
   TimeFunction:
     Type: AWS::Serverless::Function
     Properties:
