@@ -23,7 +23,7 @@ Resources:
     Properties:
       Handler: index.handler
       Runtime: nodejs6.10
-      CodeUri: ./
+      CodeUri: s3://cicdtest.appcohesion.io/inline_swagger.zip
       Events:
         MyTimeApi:
           Type: Api
