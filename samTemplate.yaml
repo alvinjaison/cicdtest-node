@@ -5,16 +5,7 @@ Resources:
   ApiGatewayApi:
     Type: AWS::Serverless::Api
     Properties:
-      DefinitionBody:
-        paths:
-          "/get":
-            get:
-              x-amazon-apigateway-integration:
-                httpMethod: POST
-                type: aws_proxy
-                uri:
-                  Fn::Sub: arn:aws:apigateway:us-east-2:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-2:902849442700:function:${TimeFunction.Arn}/invocations
-              responses: {}  
+      DefinitionUri: s3://cicdtest.appcohesion.io/swagger.yml
       StageName: staging
 
   TimeFunction:
@@ -22,7 +13,7 @@ Resources:
     Properties:
       Handler: index.handler
       Runtime: nodejs6.10
-      CodeUri: s3://cicdtest.appcohesion.io /inline_swagger.zip
+      CodeUri: ./
       Events:
         MyTimeApi:
           Type: Api
