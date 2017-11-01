@@ -11,6 +11,7 @@ Resources:
   TimeFunction:
     Type: AWS::Serverless::Function
     Properties:
+      FunctionName: TimeFunction
       Handler: index.handler
       Runtime: nodejs6.10
       CodeUri: ./
