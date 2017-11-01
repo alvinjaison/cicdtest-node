@@ -5,6 +5,7 @@ Resources:
   ApiGatewayApi:
     Type: AWS::Serverless::Api
     Properties:
+      DefinitionUri: null
       DefinitionBody:
         paths:
           "/get":
