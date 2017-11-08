@@ -4,7 +4,7 @@ exports.handler = (event, context, callback) => {
     currentTime.setTimezone("Asia/Calcutta");
     console.log("Old Test - Yes.");
     callback(null, {
-        statusCode: '200',
+        statusCode: '202',
         body: 'The time in Trivandrum is: ' + currentTime.toString(),
     });
 };
