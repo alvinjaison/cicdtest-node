@@ -9,7 +9,6 @@ Resources:
       StageName: staging
       Variables:
         LambdaFunctionName: !Ref TimeFunction
-
   TimeFunction:
     Type: AWS::Serverless::Function
     Properties:
@@ -24,7 +23,6 @@ Resources:
             Path: /TimeResource
             Method: GET   
             RestApiId: !Ref ApiGatewayApi
-
 Outputs:
   ApiUrl:
     Description: URL of your API endpoint
