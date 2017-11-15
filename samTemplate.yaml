@@ -6,7 +6,6 @@ Resources:
   MyApi:
     Type: AWS::Serverless::Api
     Properties:
-        StageName: !Ref StagingStage
         DefinitionBody:
             swagger: 2.0
             info:
@@ -25,6 +24,7 @@ Resources:
   MyLambdaFunction:
     Type: AWS::Serverless::Function
     Properties:
+      FunctionName: MyLambdaFunction
       Handler: index.handler
       Runtime: nodejs6.10
       CodeUri: ./
@@ -36,8 +36,3 @@ Resources:
             Method: GET
             RestApiId: 
               Ref: MyApi
-
-  StagingStage:
-    Type: AWS::ApiGateway::Stage
-    Properties: 
-      StageName: staging
