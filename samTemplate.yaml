@@ -12,10 +12,9 @@ Resources:
   TimeFunction:
     Type: AWS::Serverless::Function
     Properties:
-      FunctionName: TimeFunction
+      CodeUri: s3://cicdtest.appcohesion.io/api_swagger3_cors.zip
       Handler: index.handler
       Runtime: nodejs6.10
-      CodeUri: s3://cicdtest.appcohesion.io/api_swagger3_cors.zip
       Events:
         MyTimeApi:
           Type: Api
