@@ -6,7 +6,7 @@ Resources:
   MyApi:
     Type: AWS::Serverless::Api
     Properties:
-        StageName: !Ref StagingStage
+        Stage: !Ref StagingStage
         DefinitionBody:
             swagger: 2.0
             info:
@@ -42,11 +42,4 @@ Resources:
     Properties: 
       StageName: staging
       Variables: 
-        version: staging
-  ProdStage:
-    Type: AWS::ApiGateway::Stage
-    Properties: 
-      StageName: prod
-      Variables: 
-        version: prod      
-  
+        Version: staging
