@@ -11,7 +11,7 @@ paths:
       produces:
       - application/json
       responses:
-        '200':
+        '200':  
           description: 200 response
           schema:
             $ref: "#/definitions/Empty"
@@ -19,7 +19,7 @@ paths:
         responses:
           default:
             statusCode: 200
-        # NOTE: Replace <<region>> and <<account>> fields
+        # NOTE: Replace <<region>> and <<account>> fieldss
         uri: arn:aws:apigateway:us-east-2:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-2:902849442700:function:${stageVariables.TimeFunction}/invocations
         passthroughBehavior: when_no_match
         httpMethod: POST
