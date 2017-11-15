@@ -1,6 +1,6 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
-Description: Simple API Endpoint configured using Swagger specified inline and backed by a Lambda function
+Description: Simple API Endpoint configured using Swaggers specified inline and backed by a Lambda function
 Resources:
   MyApi:
     Type: AWS::Serverless::Api
