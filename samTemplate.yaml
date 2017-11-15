@@ -7,8 +7,6 @@ Resources:
     Properties:
       DefinitionUri: s3://cicdtest.appcohesion.io/swagger.yml
       StageName: staging
-      Variables:
-        LambdaFunctionName: !Ref TimeFunction
   TimeFunction:
     Type: AWS::Serverless::Function
     Properties:
