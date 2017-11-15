@@ -36,12 +36,9 @@ Resources:
               Ref: MyApi
 
   StagingStage:
-    Type : AWS::ApiGateway::Stage   
+    Type : AWS::ApiGateway::Stage
+    Properties: 
       StageName: staging
       Variables: 
         version : staging
-  ProdStage: 
-    Type : AWS::ApiGateway::Stage          
-      StageName: prod
-      Variables: 
-        version : prod    
+  
