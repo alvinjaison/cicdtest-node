@@ -1,0 +1,32 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: Outputs the time
+Resources:
+  ApiGatewayApi:
+    Type: AWS::Serverless::Api
+    Properties:
+      DefinitionUri: s3://cicdtest.appcohesion.io/swagger.yml
+      StageName: staging
+  TimeFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: s3://cicdtest.appcohesion.io/api_swagger3_cors.zip
+      Handler: index.handler
+      Runtime: nodejs6.10
+      Events:
+        MyTimeApi:
+          Type: Api
+          Properties:
+            Path: /TimeResource
+            Method: GET   
+            RestApiId: !Ref ApiGatewayApi
+Outputs:
+  ApiUrl:
+    Description: URL of your API endpoint
+    Value: !Join
+      - ''
+      - - https://
+        - !Ref ApiGatewayApi
+        - '.execute-api.'
+        - !Ref 'AWS::Region'
+        - '.amazonaws.com/Prod'

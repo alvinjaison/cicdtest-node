@@ -1,32 +1,36 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
-Description: Outputs the time
+Description: Simple API Endpoint configured using Swagger specified inline and backed by a Lambda function
 Resources:
-  ApiGatewayApi:
+  MyApi:
     Type: AWS::Serverless::Api
     Properties:
-      DefinitionUri: s3://cicdtest.appcohesion.io/swagger.yml
-      StageName: staging
-  TimeFunction:
+        StageName: prod
+        DefinitionBody:
+            swagger: 2.0
+            info:
+              title:
+                Ref: AWS::StackName
+            paths:
+              "/get":
+                  get:
+                   x-amazon-apigateway-integration:
+                     httpMethod: POST
+                     type: aws_proxy
+                     uri:
+                       Fn::Sub: arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${MyLambdaFunction.Arn}/invocations
+                   responses: {}
+  MyLambdaFunction:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: s3://cicdtest.appcohesion.io/api_swagger3_cors.zip
       Handler: index.handler
       Runtime: nodejs6.10
+      CodeUri: ./
       Events:
-        MyTimeApi:
+        GetApi:
           Type: Api
           Properties:
-            Path: /TimeResource
-            Method: GET   
-            RestApiId: !Ref ApiGatewayApi
-Outputs:
-  ApiUrl:
-    Description: URL of your API endpoint
-    Value: !Join
-      - ''
-      - - https://
-        - !Ref ApiGatewayApi
-        - '.execute-api.'
-        - !Ref 'AWS::Region'
-        - '.amazonaws.com/Prod'
+            Path: /get
+            Method: GET
+            RestApiId: 
+              Ref: MyApi
