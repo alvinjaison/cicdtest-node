@@ -34,12 +34,12 @@ Resources:
             Method: GET
             RestApiId: 
               Ref: MyApi
-  StagingStage
+  StagingStage:
     Type : AWS::ApiGateway::Stage   
       StageName: staging
       Variables: 
         version : staging
-  ProdStage 
+  ProdStage: 
     Type : AWS::ApiGateway::Stage          
       StageName: prod
       Variables: 
