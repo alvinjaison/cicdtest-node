@@ -2,6 +2,7 @@ AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
 Description: Simple API Endpoint configured using Swaggers specified inline and backed by a Lambda function
 Resources:
+## API Definition.
   MyApi:
     Type: AWS::Serverless::Api
     Properties:
@@ -20,6 +21,7 @@ Resources:
                      uri:
                        Fn::Sub: arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${MyLambdaFunction.Arn}/invocations
                    responses: {}
+## Lambda function.
   MyLambdaFunction:
     Type: AWS::Serverless::Function
     Properties:
@@ -36,9 +38,15 @@ Resources:
               Ref: MyApi
 
   StagingStage:
-    Type : AWS::ApiGateway::Stage
+    Type: AWS::ApiGateway::Stage
     Properties: 
       StageName: staging
       Variables: 
-        version : staging
+        version: staging
+  ProdStage:
+    Type: AWS::ApiGateway::Stage
+    Properties: 
+      StageName: prod
+      Variables: 
+        version: prod      
   
