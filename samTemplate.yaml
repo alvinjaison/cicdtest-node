@@ -6,6 +6,7 @@ Resources:
   MyApi:
     Type: AWS::Serverless::Api
     Properties:
+        StageName: staging
         DefinitionBody:
             swagger: 2.0
             info:
