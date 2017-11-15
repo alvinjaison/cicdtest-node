@@ -19,7 +19,7 @@ Resources:
                      httpMethod: POST
                      type: aws_proxy
                      uri:
-                       Fn::Sub: arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${MyLambdaFunction.Arn}/invocations
+                       Fn::Sub: arn:aws:apigateway:us-east-2:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-2:902849442700:function:${stageVariables.MyLambdaFunction}/invocations
                    responses: {}
 ## Lambda function.
   MyLambdaFunction:
