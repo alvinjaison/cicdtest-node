@@ -34,6 +34,7 @@ Resources:
             Method: GET
             RestApiId: 
               Ref: MyApi
+
   StagingStage:
     Type : AWS::ApiGateway::Stage   
       StageName: staging
@@ -43,4 +44,4 @@ Resources:
     Type : AWS::ApiGateway::Stage          
       StageName: prod
       Variables: 
-        version : prod            
+        version : prod    
