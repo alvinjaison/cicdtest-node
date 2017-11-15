@@ -15,7 +15,7 @@ Resources:
       FunctionName: TimeFunction
       Handler: index.handler
       Runtime: nodejs6.10
-      CodeUri: s3://cicdtest.appcohesion.io/api_swagger2_cors.zip
+      CodeUri: s3://cicdtest.appcohesion.io/api_swagger3_cors.zip
       Events:
         MyTimeApi:
           Type: Api
