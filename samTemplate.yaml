@@ -6,6 +6,7 @@ Resources:
   MyApi:
     Type: AWS::Serverless::Api
     Properties:
+        Name: CICDApi
         StageName: staging
         DefinitionBody:
             swagger: 2.0
@@ -24,7 +25,7 @@ Resources:
   MyLambdaFunction:
     Type: AWS::Serverless::Function
     Properties:
-      FunctionName: MyLambdaFunction
+      FunctionName: CICDFunction
       Handler: index.handler
       Runtime: nodejs6.10
       CodeUri: ./
