@@ -7,8 +7,6 @@ Resources:
     Type: AWS::Serverless::Api
     Properties:
         StageName: staging
-          Variables:
-           Stack: Prod
         DefinitionBody:
             swagger: 2.0
             info:
