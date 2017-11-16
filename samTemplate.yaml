@@ -28,11 +28,3 @@ Resources:
       Handler: index.handler
       Runtime: nodejs6.10
       CodeUri: ./
-      Events:
-        GetApi:
-          Type: Api
-          Properties:
-            Path: /get
-            Method: GET
-            RestApiId: 
-              Ref: MyApi
