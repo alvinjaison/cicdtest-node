@@ -8,7 +8,7 @@ Resources:
     Properties:
         StageName: staging
           Variables:
-            Stack: Prod
+           Stack: Prod
         DefinitionBody:
             swagger: 2.0
             info:
