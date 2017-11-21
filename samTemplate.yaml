@@ -21,11 +21,12 @@ Resources:
                      type: aws_proxy
                      uri: arn:aws:apigateway:us-east-2:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-2:902849442700:function:${MyLambdaFunction.Arn}:${stageVariables.version}/invocations
                    responses: {}
-## Lambda function.
+## Lambda function1.
   MyLambdaFunction:
     Type: AWS::Serverless::Function
     Properties:
       FunctionName: CICDFunction
+      Policies: LambdaFullAccess
       Handler: index.handler
       Runtime: nodejs6.10
       CodeUri: ./
