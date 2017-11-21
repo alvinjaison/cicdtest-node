@@ -21,7 +21,7 @@ Resources:
                      type: aws_proxy
                      uri: arn:aws:apigateway:us-east-2:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-2:902849442700:function:${MyLambdaFunction.Arn}:${stageVariables.version}/invocations
                    responses: {}
-## Lambda function1.
+## Lambda function12.2
   MyLambdaFunction:
     Type: AWS::Serverless::Function
     Properties:
