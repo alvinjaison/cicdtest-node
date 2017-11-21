@@ -26,7 +26,6 @@ Resources:
     Type: AWS::Serverless::Function
     Properties:
       FunctionName: CICDFunction
-      Role: LambdaFullAccess
       Handler: index.handler
       Runtime: nodejs6.10
       CodeUri: ./
