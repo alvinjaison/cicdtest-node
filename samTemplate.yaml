@@ -27,7 +27,7 @@ Resources:
     Properties:
       FunctionName: CICDFunction
       Handler: index.handler
-      Runtime: nodejs6.10
+      Runtime: nodejs4.3
       CodeUri: ./
       Events:
         GetApi:
