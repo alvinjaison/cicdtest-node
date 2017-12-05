@@ -2,25 +2,23 @@
 swagger: 2.0
 info:
   title: !Ref AWS::StackName
-schemes:
-  - https
-      paths:
-          "/get":
-              get:
-              x-amazon-apigateway-integration:
-                  httpMethod: POST
-                  type: aws_proxy
-                  uri: arn:aws:apigateway:us-east-2:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-2:902849442700:function:CICDFunction:${stageVariables.version}/invocations
-              responses: {}
-              security:
-                - myAPIsignin: []
-      securityDefinitions:
-        myAPIsignin:
-          type: "apiKey"
-          name: "Authorization"
-          in: "header"
-          x-amazon-apigateway-authtype: "cognito_user_pools"
-          x-amazon-apigateway-authorizer:
-            providerARNs:
-            - "arn:aws:cognito-idp:us-east-1:902849442700:userpool/us-east-1_Q3sA5af5A"
-            type: "cognito_user_pools"          
+paths:
+    "/get":
+        get:
+        x-amazon-apigateway-integration:
+            httpMethod: POST
+            type: aws_proxy
+            uri: arn:aws:apigateway:us-east-2:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-2:902849442700:function:CICDFunction:${stageVariables.version}/invocations
+        responses: {}
+        security:
+          - myAPIsignin: []
+securityDefinitions:
+  myAPIsignin:
+    type: "apiKey"
+    name: "Authorization"
+    in: "header"
+    x-amazon-apigateway-authtype: "cognito_user_pools"
+    x-amazon-apigateway-authorizer:
+      providerARNs:
+      - "arn:aws:cognito-idp:us-east-1:902849442700:userpool/us-east-1_Q3sA5af5A"
+      type: "cognito_user_pools"          
