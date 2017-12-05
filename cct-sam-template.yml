@@ -8,7 +8,7 @@ Resources:
     Properties:
         Name: CICDApi
         StageName: dev
-        DefinitionUri: "./swagger.yaml"
+        DefinitionUri: "./cct-sam-swagger.yaml"
         Variables:
           CCTFunctionName: !Ref CCTFunction
 
