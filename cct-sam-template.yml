@@ -2,7 +2,7 @@ AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
 Description: Simple API Endpoint configured using Swaggers specified inline and backed by a Lambda function
 Resources:
-## API Definition - New.
+## CCT API Definition.
   CCTApi:
     Type: AWS::Serverless::Api
     Properties:
@@ -19,7 +19,7 @@ Resources:
                       - myAPIsignin: []
                       x-amazon-apigateway-integration:
                         httpMethod: GET
-                        type: aws_proxy
+                        type: aws
                         uri: arn:aws:apigateway:us-east-2:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-2:902849442700:function:CICDTest:${stageVariables.version}/invocations
                       responses: {}
             securityDefinitions:
