@@ -9,5 +9,6 @@ if [ $? -ne 0 ]; then
     aws --profile gunbro apigateway delete-rest-api --rest-api-id ${apigwid} --region us-east-2
 fi
 
+aws --profile gunbro apigateway delete-base-path-mapping --domain-name 'cicdtest-staging.appcohesion.io' --base-path 'CICDApi'
 aws --profile gunbro lambda delete-function --function-name CICDFunction --region us-east-2
 aws --profile gunbro codepipeline start-pipeline-execution --name AppCoApiPL --region us-east-2

@@ -8,19 +8,7 @@ Resources:
     Properties:
         Name: CICDApi
         StageName: dev
-        DefinitionBody:
-            swagger: 2.0
-            info:
-              title:
-                Ref: AWS::StackName
-            paths:
-              "/get":
-                  get:
-                   x-amazon-apigateway-integration:
-                     httpMethod: POST
-                     type: aws_proxy
-                     uri: arn:aws:apigateway:us-east-2:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-2:902849442700:function:CICDFunction:${stageVariables.version}/invocations
-                   responses: {}
+        DefinitionUri: ./swagger.yaml
 ## Lambda function12.2
   MyLambdaFunction:
     Type: AWS::Serverless::Function
@@ -35,5 +23,4 @@ Resources:
           Properties:
             Path: /get
             Method: GET
-            RestApiId: 
-              Ref: MyApi
+            RestApiId: !Ref MyApi
