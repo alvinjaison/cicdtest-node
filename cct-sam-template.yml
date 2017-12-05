@@ -24,4 +24,5 @@ Resources:
         GetApi:
           Type: Api
           Properties:
+            Path: /get
             RestApiId: !Ref CCTApi
