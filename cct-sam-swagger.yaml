@@ -9,4 +9,8 @@ paths:
             httpMethod: POST
             type: aws_proxy
             uri: arn:aws:apigateway:us-east-2:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-2:902849442700:function:CCTFunctionName:${stageVariables.version}/invocations
-        responses: {}    
+        responses: {}
+definitions:
+  Empty:
+    type: "object"
+    title: "Empty Schema"
