@@ -6,7 +6,7 @@ phases:
       - npm install time
       - aws cloudformation package --template-file cct-sam-template.yml --s3-bucket cicdtest.appcohesion.io 
                                    --output-template-file cct-sam-out-template.yml
-      - sed -i '/DefinitionUri/d' NewSamTemplate.yaml                              
+      - sed -i '/DefinitionUri/d' cct-sam-out-template.yml                             
 artifacts:
   type: zip
   files:
