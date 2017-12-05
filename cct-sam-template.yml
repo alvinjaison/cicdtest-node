@@ -15,11 +15,23 @@ Resources:
             paths:
                 "/":
                     get:
+                      security:
+                      - myAPIsignin: []
                       x-amazon-apigateway-integration:
                         httpMethod: GET
                         type: aws_proxy
                         uri: arn:aws:apigateway:us-east-2:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-2:902849442700:function:CICDTest:${stageVariables.version}/invocations
                       responses: {}
+            securityDefinitions:
+            myAPIsignin:
+              type: "apiKey"
+              name: "Authorization"
+              in: "header"
+              x-amazon-apigateway-authtype: "cognito_user_pools"
+              x-amazon-apigateway-authorizer:
+                providerARNs:
+                - "arn:aws:cognito-idp:us-east-1:902849442700:userpool/us-east-1_Q3sA5af5A"
+                type: "cognito_user_pools"          
 
 ## Lambda function12.2
   CCTFunction:
