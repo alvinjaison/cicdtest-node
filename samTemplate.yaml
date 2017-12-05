@@ -8,7 +8,7 @@ Resources:
     Properties:
         Name: CICDApi
         StageName: dev
-        DefinitionUri: ./swagger.yaml
+        DefinitionUri: "./swagger.yaml"
 ## Lambda function12.2
   MyLambdaFunction:
     Type: AWS::Serverless::Function
