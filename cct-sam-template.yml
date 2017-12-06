@@ -6,7 +6,7 @@ Resources:
   CCTApi:
     Type: AWS::Serverless::Api
     Properties:
-        Name: CICDApi
+        Name: CICDNodeApi
         StageName: dev
         DefinitionBody: 
             swagger: 2.0
