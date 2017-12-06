@@ -37,7 +37,7 @@ Resources:
   CCTFunction:
     Type: AWS::Serverless::Function
     Properties:
-      FunctionName: CICDTest
+      FunctionName: cicdTestNode
       Handler: index.handler
       Runtime: nodejs4.3
       CodeUri: ./
