@@ -21,7 +21,7 @@
                         ], 
                         "configuration": {
                             "Owner": "rajeesh-iinerds", 
-                            "Repo": "cicdtest-node", 
+                            "Repo": "cicdsample4", 
                             "PollForSourceChanges": "true", 
                             "Branch": "master", 
                             "OAuthToken": "123"
@@ -52,7 +52,7 @@
                             }
                         ], 
                         "configuration": {
-                            "ProjectName": "CICDTest-Node-CodeBuild"
+                            "ProjectName": "CICDSample3"
                         }, 
                         "runOrder": 1
                     }
@@ -67,7 +67,7 @@
                                 "name": "MyAppBuild"
                             }
                         ], 
-                        "name": "CCTTest-Node-ChangeSet", 
+                        "name": "MyBetaStack3", 
                         "actionTypeId": {
                             "category": "Deploy", 
                             "owner": "AWS", 
@@ -77,17 +77,17 @@
                         "outputArtifacts": [], 
                         "configuration": {
                             "ActionMode": "CHANGE_SET_REPLACE", 
-                            "ChangeSetName": "CICD-Test-Node-CFChangeSet", 
+                            "ChangeSetName": "MyChangeSet3", 
                             "RoleArn": "arn:aws:iam::902849442700:role/lambda-cicd-sample3", 
                             "Capabilities": "CAPABILITY_IAM", 
-                            "StackName": "CICD-Test-Node-CFStackName", 
+                            "StackName": "MyBetaStack3", 
                             "TemplatePath": "MyAppBuild::cct-sam-out-template.yml"
                         }, 
                         "runOrder": 1
                     }, 
                     {
                         "inputArtifacts": [], 
-                        "name": "CCTTest-Node-ChangeSet-Execute", 
+                        "name": "execute_cs", 
                         "actionTypeId": {
                             "category": "Deploy", 
                             "owner": "AWS", 
@@ -96,19 +96,19 @@
                         }, 
                         "outputArtifacts": [
                             {
-                                "name": "CICD-Test-Node-CFStackName"
+                                "name": "MyBetaStack3"
                             }
                         ], 
                         "configuration": {
-                            "StackName": "CICD-Test-Node-CFStackName", 
+                            "StackName": "MyBetaStack3", 
                             "ActionMode": "CHANGE_SET_EXECUTE", 
-                            "ChangeSetName": "CICD-Test-Node-CFChangeSet"
+                            "ChangeSetName": "MyChangeSet3"
                         }, 
                         "runOrder": 2
                     }, 
                     {
                         "inputArtifacts": [], 
-                        "name": "CreateStage",
+                        "name": "CreateStage", 
                         "actionTypeId": {
                             "category": "Invoke", 
                             "owner": "AWS", 
@@ -117,8 +117,7 @@
                         }, 
                         "outputArtifacts": [], 
                         "configuration": {
-                            "FunctionName": "cicdCreateStage", 
-                            "UserParameters": "CICD-Test-Node-CFStackName"
+                            "FunctionName": "cicdCreateStage"
                         }, 
                         "runOrder": 3
                     }, 
@@ -133,8 +132,7 @@
                         }, 
                         "outputArtifacts": [], 
                         "configuration": {
-                            "FunctionName": "cicdCreateAlias", 
-                            "UserParameters": "CICD-Test-Node-CFStackName"
+                            "FunctionName": "cicdCreateAlias"
                         }, 
                         "runOrder": 3
                     }, 
@@ -149,8 +147,7 @@
                         }, 
                         "outputArtifacts": [], 
                         "configuration": {
-                            "FunctionName": "cicdAddPermissions", 
-                            "UserParameters": "CICD-Test-Node-CFStackName"
+                            "FunctionName": "cicdAddPermissions"
                         }, 
                         "runOrder": 4
                     }, 
@@ -165,8 +162,7 @@
                         }, 
                         "outputArtifacts": [], 
                         "configuration": {
-                            "FunctionName": "cicdAddBasepath", 
-                            "UserParameters": "CICD-Test-Node-CFStackName"
+                            "FunctionName": "cicdAddBasepath"
                         }, 
                         "runOrder": 4
                     }
@@ -187,8 +183,8 @@
                         "outputArtifacts": [], 
                         "configuration": {
                             "Bucket": "pohibkpnkoh8", 
-                            "TestId": "cb5cf528-ed58-41aa-85b0-5e9212b978f7", 
-                            "ClientId": "5f514b43-096c-4131-8502-cbc7f166a55a", 
+                            "TestId": "01f0fdec-e133-4800-a477-60b9ab6c9a38", 
+                            "ClientId": "ec8162ee-2b34-418b-9c16-e83ef7528df8", 
                             "ClientToken": "123"
                         }, 
                         "runOrder": 1
@@ -229,8 +225,7 @@
                         }, 
                         "outputArtifacts": [], 
                         "configuration": {
-                            "FunctionName": "cicdUpdateProduction", 
-                            "UserParameters": "CICD-Test-Node-CFStackName"
+                            "FunctionName": "cicdUpdateProduction"
                         }, 
                         "runOrder": 1
                     }
@@ -242,6 +237,6 @@
             "location": "codepipeline-us-east-2-819062503595"
         }, 
         "name": "CCTTest-Node", 
-        "version": 4
+        "version": 2
     }
 }

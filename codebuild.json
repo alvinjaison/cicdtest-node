@@ -1,0 +1,25 @@
+{
+            "name": "CICD-CodeBuild-Node", 
+            "serviceRole": "arn:aws:iam::902849442700:role/service-role/code-build-CICDSample3-service-role", 
+            "tags": [], 
+            "artifacts": {
+                "packaging": "NONE", 
+                "type": "CODEPIPELINE", 
+                "name": "CICD-CodeBuild-Node"
+            }, 
+            "lastModified": 1509371554.829, 
+            "timeoutInMinutes": 60, 
+            "created": 1509371554.829, 
+            "environment": {
+                "computeType": "BUILD_GENERAL1_SMALL", 
+                "privilegedMode": false, 
+                "image": "aws/codebuild/nodejs:4.3.2", 
+                "type": "LINUX_CONTAINER", 
+                "environmentVariables": []
+            }, 
+            "source": {
+                "type": "CODEPIPELINE"
+            }, 
+            "encryptionKey": "arn:aws:kms:us-east-2:902849442700:alias/aws/s3", 
+            "arn": "arn:aws:codebuild:us-east-2:902849442700:project/CICD-CodeBuild-Node"
+}
