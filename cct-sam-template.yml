@@ -38,7 +38,11 @@ Resources:
                 x-amazon-apigateway-authorizer:
                   providerARNs:
                   - "arn:aws:cognito-idp:us-east-1:902849442700:userpool/us-east-1_Q3sA5af5A"
-                  type: "cognito_user_pools"          
+                  type: "cognito_user_pools" 
+            definitions:
+              Empty:
+                type: "object"
+                title: "Empty Schema"         
 
 ## Lambda function12.2
   CCTFunction:
