@@ -16,7 +16,7 @@ Resources:
                 "/":
                   get:
                     produces:
-                    - application/json
+                    - "application/json"
                     responses:
                       "200":  
                         description: "200 response"
@@ -28,7 +28,6 @@ Resources:
                       httpMethod: GET
                       type: aws
                       uri: arn:aws:apigateway:us-east-2:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-2:902849442700:function:cicdTestNode  :${stageVariables.version}/invocations
-                      responses: {}
                   options:
                     consumes:
                     - "application/json"
