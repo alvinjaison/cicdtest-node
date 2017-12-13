@@ -19,7 +19,7 @@ Resources:
                     - application/json
                     responses:
                       '200':  
-                        description: 200 response
+                        description: "200 response"
                         schema:
                           $ref: "#/definitions/Empty"
                     security:
