@@ -13,7 +13,7 @@ Resources:
             info:
               title: !Ref AWS::StackName
             paths:
-                /:
+                "/":
                   get:
                     produces:
                     - application/json
@@ -28,11 +28,7 @@ Resources:
                       httpMethod: GET
                       type: aws
                       uri: arn:aws:apigateway:us-east-2:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-2:902849442700:function:cicdTestNode  :${stageVariables.version}/invocations
-                      responses: 
-                          default:
-                            statusCode: "200"
-                            responseParameters:
-                              method.response.header.Access-Control-Allow-Origin: "'*'"
+                      responses: {}
             securityDefinitions:
               myAPIsignin:
                 type: "apiKey"
