@@ -26,7 +26,7 @@ Resources:
                       responses:
                         default:
                           statusCode: '200'      
-                      httpMethod: GET
+                      httpMethod: POST
                       type: aws
                       uri: 'arn:aws:apigateway:us-east-2:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-2:902849442700:function:cicdTestNode:${stageVariables.version}/invocations'
                     security:
