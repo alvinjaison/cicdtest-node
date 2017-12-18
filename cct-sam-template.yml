@@ -46,7 +46,7 @@ Resources:
                 type: "object"
                 title: "Empty Schema"         
 
-## Lambda function12.2
+## Lambda function defined here.
   CCTFunction:
     Type: AWS::Serverless::Function
     Properties:
