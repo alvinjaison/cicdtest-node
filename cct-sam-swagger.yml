@@ -32,7 +32,7 @@ paths:
       - myAPIsignin: []
     #/**
     # Method of resource. Please keep the method name in lowercase!!
-    # This came in part of the CORS enablement.
+    # This came in part of the CORS enablement. Keep upto the element "mock" as it is.
     # */
     options:
       consumes:
@@ -65,17 +65,17 @@ paths:
         type: "mock"  
 # Authorization items are defined here.         
 securityDefinitions:
-myAPIsignin:
-  type: "apiKey"
-  name: "Authorization"
-  in: "header"
-  x-amazon-apigateway-authtype: "cognito_user_pools"
-  x-amazon-apigateway-authorizer:
-    providerARNs:
-    - "arn:aws:cognito-idp:us-east-1:902849442700:userpool/us-east-1_Q3sA5af5A"
-    type: "cognito_user_pools" 
+  myAPIsignin:
+    type: "apiKey"
+    name: "Authorization"
+    in: "header"
+    x-amazon-apigateway-authtype: "cognito_user_pools"
+    x-amazon-apigateway-authorizer:
+      providerARNs:
+      - "arn:aws:cognito-idp:us-east-1:902849442700:userpool/us-east-1_Q3sA5af5A"
+      type: "cognito_user_pools" 
 # Custom definitions object.      
 definitions:
-Empty:
-  type: "object"
-  title: "Empty Schema"
+  Empty:
+    type: "object"
+    title: "Empty Schema"
