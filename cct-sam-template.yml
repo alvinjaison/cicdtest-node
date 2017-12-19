@@ -15,7 +15,7 @@ Resources:
               title: !Ref AWS::StackName
             paths:
                 "/":
-                  GET:
+                  get:
                     produces:
                     - 'application/json'
                     responses:
@@ -32,7 +32,7 @@ Resources:
                       uri: 'arn:aws:apigateway:us-east-2:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-2:902849442700:function:cicdTestNode:${stageVariables.version}/invocations'
                     security:
                     - myAPIsignin: []
-                  OPTIONS:
+                  options:
                     consumes:
                     - "application/json"
                     produces:
