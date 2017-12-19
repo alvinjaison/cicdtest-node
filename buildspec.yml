@@ -1,13 +1,23 @@
 
+#/**
+# @author: Rajith<rajith.v@iinerds.com>
+# @desc: The build file as used by CodeBuild.
+# */
 version: 0.1
 phases:
   install:
     commands:
-      - npm install time
+      - npm install time # Install the dependency package.
+      # The packaging of the application starts here.
       - aws cloudformation package --template-file cct-sam-template.yml --s3-bucket cicdtest.appcohesion.io 
                                    --output-template-file cct-sam-out-template.yml
+      # AWS Bug. Rajith found this solution.                           
       - sed -i '/DefinitionUri/d' cct-sam-out-template.yml                             
 artifacts:
   type: zip
   files:
+    #/** 
+    # As a output template. The "CodeUri: ./" will be replaced with the respective output build name
+    # at the place of "./"
+    # */
     - cct-sam-out-template.yml

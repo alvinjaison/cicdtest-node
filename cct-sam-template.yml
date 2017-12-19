@@ -1,3 +1,8 @@
+#/**
+# 
+# @author: Rajeesh<rajeesh.k@iinerds.com> 
+# @desc: The SAM template for building the CCT Backend API.
+# */
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
 Description: Simple API Endpoint configured using Swaggers specified inline and backed by a Lambda function
@@ -6,15 +11,25 @@ Resources:
   CCTApi:
     Type: AWS::Serverless::Api
     Properties:
-        ## API Name.
+        #/** API Name Need to be defined here. Place it after "Name:"
+        # Please keep an unique name for API.
+        # */
         Name: CICDNodeApi
+        #/** 
+        # It is compulsory to give a new Stage name. It is unused at this point of time.
+        # By default the SAM template creates "Stage" stage, which is deleted by the 
+        # API-HomeWork stage of CodePipeline.
+        # */
         StageName: dev
-        DefinitionBody: 
+        DefinitionBody:
+            # Swagger starts here. 
             swagger: 2.0
             info:
               title: !Ref AWS::StackName
             paths:
+                # The Resource Path. 
                 "/":
+                  # Method of resource. Please keep the method name in lowercase!!
                   get:
                     produces:
                     - 'application/json'
@@ -26,12 +41,22 @@ Resources:
                     x-amazon-apigateway-integration:
                       responses:
                         default:
-                          statusCode: '200'      
+                          statusCode: '200'
+                      # Retain the below method as it is. This is the API Gateway > Lambda integartion method.       
                       httpMethod: POST
                       type: aws
+                      #/** 
+                      # Update the function name after "uri.....function:<cicdTestNode>"
+                      # Retain other values as it is including the Account ID and Region.
+                      # */ 
                       uri: 'arn:aws:apigateway:us-east-2:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-2:902849442700:function:cicdTestNode:${stageVariables.version}/invocations'
+                    # This will make the "Authorization" config within the "Method Request" of API Gateway.
                     security:
                     - myAPIsignin: []
+                  #/**
+                  # Method of resource. Please keep the method name in lowercase!!
+                  # This came in part of the CORS enablement.
+                  # */
                   options:
                     consumes:
                     - "application/json"
@@ -61,6 +86,7 @@ Resources:
                       requestTemplates:
                         application/json: "{\"statusCode\": 200}"
                       type: "mock"  
+            # Authorization items are defined here.         
             securityDefinitions:
               myAPIsignin:
                 type: "apiKey"
@@ -71,23 +97,29 @@ Resources:
                   providerARNs:
                   - "arn:aws:cognito-idp:us-east-1:902849442700:userpool/us-east-1_Q3sA5af5A"
                   type: "cognito_user_pools" 
+            # Custom definitions object.      
             definitions:
               Empty:
                 type: "object"
-                title: "Empty Schema"         
+                title: "Empty Schema"
+                # Swagger ends here.    
 
 ## Lambda function defined here.
   CCTFunction:
     Type: AWS::Serverless::Function
     Properties:
+      #/**
+      # Define the Lambda function name here; after "FunctionName:<LambdaFunction>"
+      # */
       FunctionName: cicdTestNode
       Handler: index.handler
       Runtime: nodejs6.10
       CodeUri: ./
       Events:
+        # The definitions as defined above.
         GetApi:
           Type: Api
           Properties:
             Path: /
             Method: GET
-            RestApiId: !Ref CCTApi
+            RestApiId: !Ref CCTApi # Refer The API defined above.
