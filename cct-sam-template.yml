@@ -7,7 +7,7 @@ AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
 Description: Simple API Endpoint configured using Swaggers specified inline and backed by a Lambda function
 Resources:
-## CCT API Definition.
+  ## CCT API Definition.
   CCTApi:
     Type: AWS::Serverless::Api
     Properties:
@@ -21,90 +21,11 @@ Resources:
         # API-HomeWork stage of CodePipeline.
         # */
         StageName: dev
-        DefinitionBody:
-            # Swagger starts here. 
-            swagger: 2.0
-            info:
-              title: !Ref AWS::StackName
-            paths:
-                # The Resource Path. 
-                "/":
-                  # Method of resource. Please keep the method name in lowercase!!
-                  get:
-                    produces:
-                    - 'application/json'
-                    responses:
-                      '200':  
-                        description: "200 response"
-                        schema:
-                          $ref: "#/definitions/Empty"
-                    x-amazon-apigateway-integration:
-                      responses:
-                        default:
-                          statusCode: '200'
-                      # Retain the below method as it is. This is the API Gateway > Lambda integartion method.       
-                      httpMethod: POST
-                      type: aws
-                      #/** 
-                      # Update the function name after "uri.....function:<cicdTestNode>"
-                      # Retain other values as it is including the Account ID and Region.
-                      # */ 
-                      uri: 'arn:aws:apigateway:us-east-2:lambda:path/2015-03-31/functions/arn:aws:lambda:us-east-2:902849442700:function:cicdTestNode:${stageVariables.version}/invocations'
-                    # This will make the "Authorization" config within the "Method Request" of API Gateway.
-                    security:
-                    - myAPIsignin: []
-                  #/**
-                  # Method of resource. Please keep the method name in lowercase!!
-                  # This came in part of the CORS enablement.
-                  # */
-                  options:
-                    consumes:
-                    - "application/json"
-                    produces:
-                    - "application/json"
-                    responses:
-                      '200':
-                        description: "200 response"
-                        schema:
-                          $ref: "#/definitions/Empty"
-                        headers:
-                          Access-Control-Allow-Origin:
-                            type: "string"
-                          Access-Control-Allow-Methods:
-                            type: "string"
-                          Access-Control-Allow-Headers:
-                            type: "string"
-                    x-amazon-apigateway-integration:
-                      responses:
-                        default:
-                          statusCode: "200"
-                          responseParameters:
-                            method.response.header.Access-Control-Allow-Methods: "'POST,OPTIONS'"
-                            method.response.header.Access-Control-Allow-Headers: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
-                            method.response.header.Access-Control-Allow-Origin: "'*'"
-                      passthroughBehavior: "when_no_match"
-                      requestTemplates:
-                        application/json: "{\"statusCode\": 200}"
-                      type: "mock"  
-            # Authorization items are defined here.         
-            securityDefinitions:
-              myAPIsignin:
-                type: "apiKey"
-                name: "Authorization"
-                in: "header"
-                x-amazon-apigateway-authtype: "cognito_user_pools"
-                x-amazon-apigateway-authorizer:
-                  providerARNs:
-                  - "arn:aws:cognito-idp:us-east-1:902849442700:userpool/us-east-1_Q3sA5af5A"
-                  type: "cognito_user_pools" 
-            # Custom definitions object.      
-            definitions:
-              Empty:
-                type: "object"
-                title: "Empty Schema"
-                # Swagger ends here.    
+        DefinitionUri: "./cct-sam-swagger.yaml"
+        Variables:
+            LambdaFunctionName: !Ref CCTFunction
 
-## Lambda function defined here.
+  ## Lambda function defined here.
   CCTFunction:
     Type: AWS::Serverless::Function
     Properties:
