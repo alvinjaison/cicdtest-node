@@ -3,7 +3,7 @@
         "roleArn": "arn:aws:iam::902849442700:role/AWS-CodePipeline-Service", 
         "stages": [
             {
-                "name": "Source", 
+                "name": "Source-Retrieval", 
                 "actions": [
                     {
                         "inputArtifacts": [], 
@@ -31,7 +31,7 @@
                 ]
             }, 
             {
-                "name": "Build", 
+                "name": "API-Build", 
                 "actions": [
                     {
                         "inputArtifacts": [
@@ -52,14 +52,14 @@
                             }
                         ], 
                         "configuration": {
-                            "ProjectName": "CICDTest-Node-CodeBuild"
+                            "ProjectName": "CICD-CodeBuild-Node"
                         }, 
                         "runOrder": 1
                     }
                 ]
             }, 
             {
-                "name": "Staging", 
+                "name": "API-Deploy", 
                 "actions": [
                     {
                         "inputArtifacts": [
@@ -105,10 +105,16 @@
                             "ChangeSetName": "CICD-Test-Node-CFChangeSet"
                         }, 
                         "runOrder": 2
-                    }, 
+                    }
+                   
+                ]
+            }, 
+            {
+                "name": "API-HomeWork", 
+                "actions": [
                     {
                         "inputArtifacts": [], 
-                        "name": "CreateStage",
+                        "name": "CreateStage", 
                         "actionTypeId": {
                             "category": "Invoke", 
                             "owner": "AWS", 
@@ -140,6 +146,22 @@
                     }, 
                     {
                         "inputArtifacts": [], 
+                        "name": "StageMonitor", 
+                        "actionTypeId": {
+                            "category": "Invoke", 
+                            "owner": "AWS", 
+                            "version": "1", 
+                            "provider": "Lambda"
+                        }, 
+                        "outputArtifacts": [], 
+                        "configuration": {
+                            "FunctionName": "cicdSFStage", 
+                            "UserParameters": "CICD-Test-Node-CFStackName"
+                        }, 
+                        "runOrder": 4
+                    }, 
+                    {
+                        "inputArtifacts": [], 
                         "name": "AddPermission", 
                         "actionTypeId": {
                             "category": "Invoke", 
@@ -152,7 +174,7 @@
                             "FunctionName": "cicdAddPermissions", 
                             "UserParameters": "CICD-Test-Node-CFStackName"
                         }, 
-                        "runOrder": 4
+                        "runOrder": 5
                     }, 
                     {
                         "inputArtifacts": [], 
@@ -166,14 +188,15 @@
                         "outputArtifacts": [], 
                         "configuration": {
                             "FunctionName": "cicdAddBasepath", 
-                            "UserParameters": "CICD-Test-Node-CFStackName"
+                            "UserParameters": "{\"stackName\" : \"CICD-Test-Node-CFStackName\", \"stageName\": \"staging\", \"stageDomain\": \"cicdtest-staging.appcohesion.io\"}"
                         }, 
-                        "runOrder": 4
+                        "runOrder": 5
                     }
+
                 ]
-            }, 
+            },         
             {
-                "name": "APITest", 
+                "name": "Staging-API-Test", 
                 "actions": [
                     {
                         "inputArtifacts": [], 
@@ -186,9 +209,9 @@
                         }, 
                         "outputArtifacts": [], 
                         "configuration": {
-                            "Bucket": "pohibkpnkoh8", 
-                            "TestId": "cb5cf528-ed58-41aa-85b0-5e9212b978f7", 
-                            "ClientId": "5f514b43-096c-4131-8502-cbc7f166a55a", 
+                            "Bucket": "g9jagsp57vtf", 
+                            "TestId": "5432d5c0-3f4e-47b3-bfc2-785628a616aa", 
+                            "ClientId": "6e48a4b7-c49c-4254-8b47-a8f049ee282a", 
                             "ClientToken": "123"
                         }, 
                         "runOrder": 1
@@ -196,7 +219,7 @@
                 ]
             }, 
             {
-                "name": "ManualApproval", 
+                "name": "Manual-Approval", 
                 "actions": [
                     {
                         "inputArtifacts": [], 
@@ -216,11 +239,11 @@
                 ]
             }, 
             {
-                "name": "UpdateProductionAPI", 
+                "name": "Production-Update", 
                 "actions": [
                     {
                         "inputArtifacts": [], 
-                        "name": "UpdateProductionApi", 
+                        "name": "UpdateVersion", 
                         "actionTypeId": {
                             "category": "Invoke", 
                             "owner": "AWS", 
@@ -233,6 +256,62 @@
                             "UserParameters": "CICD-Test-Node-CFStackName"
                         }, 
                         "runOrder": 1
+                    }, 
+                    {
+                        "inputArtifacts": [], 
+                        "name": "AddBasePath", 
+                        "actionTypeId": {
+                            "category": "Invoke", 
+                            "owner": "AWS", 
+                            "version": "1", 
+                            "provider": "Lambda"
+                        }, 
+                        "outputArtifacts": [], 
+                        "configuration": {
+                            "FunctionName": "cicdAddBasepath", 
+                            "UserParameters": "{\"stackName\" : \"CICD-Test-Node-CFStackName\", \"stageName\": \"prod\", \"stageDomain\": \"cicdtest.appcohesion.io\"}"
+                        }, 
+                        "runOrder": 1
+                    }
+                ]
+            }, 
+            {
+                "name": "Production-API-Test", 
+                "actions": [
+                    {
+                        "inputArtifacts": [], 
+                        "name": "RunscopeProduction", 
+                        "actionTypeId": {
+                            "category": "Test", 
+                            "owner": "ThirdParty", 
+                            "version": "1", 
+                            "provider": "Runscope"
+                        }, 
+                        "outputArtifacts": [], 
+                        "configuration": {
+                            "Bucket": "pohibkpnkoh8", 
+                            "TestId": "01f0fdec-e133-4800-a477-60b9ab6c9a38", 
+                            "ClientId": "99ef2d49-4f27-44f4-bb51-64367799526e", 
+                            "ClientToken": "123"
+                        }, 
+                        "runOrder": 1
+                    }, 
+                    {
+                        "inputArtifacts": [], 
+                        "name": "UITest-Production", 
+                        "actionTypeId": {
+                            "category": "Test", 
+                            "owner": "ThirdParty", 
+                            "version": "1", 
+                            "provider": "GhostInspector"
+                        }, 
+                        "outputArtifacts": [], 
+                        "configuration": {
+                            "TestId": "5a37e5758c944a6f3e1e520d", 
+                            "ClientId": "120fff5a-29aa-46fc-8ca6-593a4b256e6f", 
+                            "ClientToken": "123"
+                        }, 
+                        "runOrder": 2
                     }
                 ]
             }
@@ -241,7 +320,7 @@
             "type": "S3", 
             "location": "codepipeline-us-east-2-819062503595"
         }, 
-        "name": "CCTTest-Node", 
-        "version": 4
+        "name": "CCT-Test-Node-20171219", 
+        "version": 1
     }
 }

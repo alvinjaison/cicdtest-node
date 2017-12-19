@@ -6,6 +6,7 @@ Resources:
   CCTApi:
     Type: AWS::Serverless::Api
     Properties:
+        ## API Name.
         Name: CICDNodeApi
         StageName: dev
         DefinitionBody: 
@@ -58,6 +59,6 @@ Resources:
         GetApi:
           Type: Api
           Properties:
-            Path: /get
+            Path: /
             Method: GET
             RestApiId: !Ref CCTApi
