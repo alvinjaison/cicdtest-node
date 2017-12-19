@@ -1,7 +1,8 @@
 
 #/**
 # @author: Rajith<rajith.v@iinerds.com>
-# @desc: The build file as used by CodeBuild.
+# @desc: The build file as used by CodeBuild to build the Node based application.
+# @since: 2017-12-04
 # */
 version: 0.1
 phases:

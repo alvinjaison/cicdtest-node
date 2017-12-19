@@ -1,10 +1,14 @@
 ---
 # Swagger starts here. 
+# @author: Rajeesh<rajeesh.k@iinerds.com>
+# @desc: Swagger definition for API. Referred from "./cct-sam-template.yml", "DefinitionUri" field.
+# @since: 2017-12-19
+
 swagger: 2.0
 info:
   title: !Ref AWS::StackName
 paths:
-  # The Resource Path. 
+  # The Resource Path. Each additional resource has to be maintained like this.
   "/":
     # Method of resource. Please keep the method name in lowercase!!
     get:

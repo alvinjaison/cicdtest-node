@@ -3,7 +3,7 @@
  * @author: Flicked from online.
  * @desc: A sample Node based Lambda to print the Time of a particaular timezone.
  */
-
+ 
 var time = require('time');
 
 // Lambda handler.
