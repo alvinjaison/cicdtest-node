@@ -21,7 +21,7 @@ Resources:
         # API-HomeWork stage of CodePipeline.
         # */
         StageName: dev
-        DefinitionUri: "./cct-sam-swagger.yaml"
+        DefinitionUri: "./cct-sam-swagger.yml"
         Variables:
             LambdaFunctionName: !Ref CCTFunction
 
