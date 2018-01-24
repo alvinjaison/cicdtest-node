@@ -6,7 +6,7 @@
  
 var time = require('time');
 
-// Lambda handler.
+// Lambda handler. Update for Demo
 exports.handler = (event, context, callback) => {
 
     var currentTime = new time.Date(); 

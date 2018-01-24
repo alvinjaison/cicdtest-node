@@ -320,7 +320,7 @@
             "type": "S3", 
             "location": "codepipeline-us-east-2-819062503595"
         }, 
-        "name": "CCT-Test-Node-20171219", 
+        "name": "CCT-Test-Node-20170124", 
         "version": 1
     }
 }
